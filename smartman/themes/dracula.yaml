@@ -1,0 +1,11 @@
+name: dracula
+heading: bold "#ff79c6"
+subheading: bold "#bd93f9"
+flag: bold "#ffb86c"
+code: "#f8f8f2" on "#282a36"
+synopsis: italic "#50fa7b"
+description: "#f8f8f2"
+accent: "#8be9fd"
+border: "#6272a4"
+highlight: bold "#ff5555"
+muted: "#6272a4"

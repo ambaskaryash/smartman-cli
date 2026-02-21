@@ -1,0 +1,11 @@
+name: default
+heading: bold cyan
+subheading: bold blue
+flag: bold yellow
+code: bright_white on grey19
+synopsis: italic bright_green
+description: white
+accent: cyan
+border: blue
+highlight: bold magenta
+muted: dim white

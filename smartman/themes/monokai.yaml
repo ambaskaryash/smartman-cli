@@ -1,0 +1,11 @@
+name: monokai
+heading: bold "#a6e22e"
+subheading: bold "#66d9e8"
+flag: bold "#fd971f"
+code: "#f8f8f2" on "#272822"
+synopsis: italic "#e6db74"
+description: "#f8f8f2"
+accent: "#ae81ff"
+border: "#75715e"
+highlight: bold "#f92672"
+muted: "#75715e"
