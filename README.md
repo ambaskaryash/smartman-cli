@@ -9,12 +9,11 @@
 **SmartMan** is a modern, terminal-native enhancement for the Linux `man` command. It transforms dense, hard-to-read manual pages into an interactive, visually stunning experience with syntax highlighting, quick-navigation sidebars, and AI-powered explanations.
 
 ```text
-    _                         _                            
-   / \   _ __ ___   __ _ _ __| |_ _ __ ___   __ _ _ __  
-  / _ \ | '_ ` _ \ / _` | '__| __| '_ ` _ \ / _` | '_ \ 
- / ___ \| | | | | | (_| | |  | |_| | | | | | (_| | | | |
-/_/   \_\_| |_| |_|\__,_|_|   \__|_| |_| |_|\__,_|_| |_|
-                                                           
+ ____                        _   __  __
+/ ___| _ __ ___   __ _ _ __ | |_|  \/  | __ _  _ __
+\___ \| '_ ` _ \ / _` | '__|| __| |\/| |/ _` | '_ \
+ ___) | | | | | | (_| | |   | |_| |  | | (_| | | | |
+|____/|_| |_| |_|\__,_|_|    \__|_|  |_|\__,_|_| |_|
 ```
 
 ---
