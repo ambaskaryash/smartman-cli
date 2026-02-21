@@ -249,13 +249,8 @@ class SmartManApp(App):
             self._section_widgets[section_name.upper()] = section_widget
             content_container.mount(section_widget)
 
-    def _create_section_widget(self, name: str, content: str, highlight_query: str = "") -> Static:
-        """Create a styled Static widget for a man page section."""
-        from rich.rule import Rule
-        from rich.text import Text
-        from rich.console import Group
-        import re
-
+    def _get_section_renderable(self, name: str, content: str, highlight_query: str = "") -> Group:
+        """Generate the renderable Group for a section, with optional highlights."""
         heading_style = self.theme_data.get("heading", "bold cyan")
         flag_style = self.theme_data.get("flag", "bold yellow")
         desc_style = self.theme_data.get("description", "white")
@@ -293,7 +288,12 @@ class SmartManApp(App):
                     text.append(part, style=style)
             renderables.append(text)
 
-        return Static(Group(*renderables), classes="man-section", id=f"section-{name.replace(' ', '_')}")
+        return Group(*renderables)
+
+    def _create_section_widget(self, name: str, content: str, highlight_query: str = "") -> Static:
+        """Create a styled Static widget for a man page section."""
+        renderable = self._get_section_renderable(name, content, highlight_query)
+        return Static(renderable, classes="man-section", id=f"section-{name.replace(' ', '_')}")
 
     def watch_show_search(self, show: bool) -> None:
         """Toggle search bar visibility."""
@@ -327,18 +327,12 @@ class SmartManApp(App):
 
     def _refresh_content(self, query: str = "") -> None:
         """Update all section widgets with search highlights."""
-        content_container = self.query_one("#main-scroll", VerticalScroll)
-        # Clear current section widgets from container
-        for widget in self._section_widgets.values():
-            widget.remove()
-        
-        self._section_widgets.clear()
-        
-        # Re-mount with highlight
         for section_name, content in self.page.sections.items():
-            section_widget = self._create_section_widget(section_name, content, query)
-            self._section_widgets[section_name.upper()] = section_widget
-            content_container.mount(section_widget)
+            section_upper = section_name.upper()
+            if section_upper in self._section_widgets:
+                widget = self._section_widgets[section_upper]
+                renderable = self._get_section_renderable(section_name, content, query)
+                widget.update(renderable)
 
     def _jump_to_first_match(self, query: str) -> None:
         """Find the first section containing the query and scroll to it."""
