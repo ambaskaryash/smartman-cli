@@ -111,6 +111,8 @@ SmartMan supports custom YAML themes. You can find the bundled themes in `smartm
 | **Default** | *Modern Dark Blue* |
 | **Dracula** | *Classic Dev aesthetic* |
 | **Monokai** | *High-contrast vibrant* |
+| **Nord**    | *Cool-toned Frost* |
+| **Catppuccin** | *Pastel Mocha* |
 
 ---
 

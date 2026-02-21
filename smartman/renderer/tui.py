@@ -56,6 +56,10 @@ class SmartManApp(App):
     TITLE = "SmartMan"
     BINDINGS = [
         Binding("q", "quit", "Quit", show=True),
+        Binding("j", "scroll_down", "Scroll Down", show=False),
+        Binding("k", "scroll_up", "Scroll Up", show=False),
+        Binding("gg", "scroll_top", "Top", show=False),
+        Binding("G", "scroll_bottom", "Bottom", show=False),
         Binding("n", "jump_section('NAME')", "NAME", show=True),
         Binding("s", "jump_section('SYNOPSIS')", "SYNOPSIS", show=True),
         Binding("d", "jump_section('DESCRIPTION')", "DESCRIPTION", show=True),
@@ -367,6 +371,22 @@ class SmartManApp(App):
             if section_name in self._section_widgets:
                 widget = self._section_widgets[section_name]
                 self.query_one("#main-scroll", VerticalScroll).scroll_to_widget(widget, animate=True)
+
+    def action_scroll_down(self) -> None:
+        """Scroll down slightly."""
+        self.query_one("#main-scroll", VerticalScroll).scroll_down(animate=False)
+
+    def action_scroll_up(self) -> None:
+        """Scroll up slightly."""
+        self.query_one("#main-scroll", VerticalScroll).scroll_up(animate=False)
+
+    def action_scroll_top(self) -> None:
+        """Scroll to the very top."""
+        self.query_one("#main-scroll", VerticalScroll).scroll_to(0, 0, animate=True)
+
+    def action_scroll_bottom(self) -> None:
+        """Scroll to the very bottom."""
+        self.query_one("#main-scroll", VerticalScroll).scroll_to(0, 1000000, animate=True)
 
     def action_toggle_help(self) -> None:
         self.notify(
