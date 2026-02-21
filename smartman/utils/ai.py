@@ -1,5 +1,6 @@
 import os
 import requests
+import re
 
 def explain_command(command: str, raw_text: str) -> str:
     """
@@ -19,12 +20,12 @@ def explain_command(command: str, raw_text: str) -> str:
         "Content-Type": "application/json"
     }
 
-    # Truncate raw_text if it's too long for context limits (roughly 4k tokens)
-    # Most man pages are fine, but some (like ffmpeg) are massive.
-    truncated_text = raw_text[:12000] 
+    # Clean the man text of control characters and backspaces
+    cleaned_text = _clean_man_text(raw_text)
+    truncated_text = cleaned_text[:12000] 
 
     payload = {
-        "model": "llama3-8b-8192",
+        "model": "llama-3.3-70b-versatile",
         "messages": [
             {
                 "role": "system", 
@@ -41,11 +42,22 @@ def explain_command(command: str, raw_text: str) -> str:
 
     try:
         response = requests.post(url, headers=headers, json=payload, timeout=10)
-        response.raise_for_status()
+        if response.status_code != 200:
+            error_msg = response.text
+            return f"[bold red]AI Error (Groq {response.status_code}):[/bold red] {error_msg}\n\n{_mock_explanation(command, real_key_found=True)}"
+        
         data = response.json()
         return data["choices"][0]["message"]["content"].strip()
     except Exception as e:
         return f"[bold red]AI Error (Groq):[/bold red] {str(e)}\n\n[dim]Falling back to offline summary...[/dim]\n\n{_mock_explanation(command, real_key_found=True)}"
+
+def _clean_man_text(text: str) -> str:
+    """Strips backspaces and other control characters used for man page formatting."""
+    # Remove backspace overstrikes (e.g., 'a\ba' or '_\ba')
+    text = re.sub(r'.\b', '', text)
+    # Remove remaining non-printable characters except whitespace
+    text = "".join(char for char in text if char.isprintable() or char in "\n\r\t")
+    return text
 
 def _mock_explanation(command: str, real_key_found: bool = False) -> str:
     """Provides high-quality mock explanations for common commands."""
