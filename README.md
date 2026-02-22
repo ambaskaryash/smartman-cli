@@ -1,12 +1,12 @@
-# 📖 SmartMan
+# 📖 SmartMan CLI
 
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![Built with Textual](https://img.shields.io/badge/built%20with-Textual-hotpink.svg)](https://textual.textualize.io/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-![SmartMan Demo](https://vhs.charm.sh/vhs-2RqfCAfc83n1Mij229as1i.gif)
+![SmartMan CLI Demo](https://vhs.charm.sh/vhs-3vIvVmHvhKGBzRqjQ3UPyf.gif)
 
-**SmartMan** is a modern, terminal-native enhancement for the Linux `man` command. It transforms dense, hard-to-read manual pages into an interactive, visually stunning experience with syntax highlighting, quick-navigation sidebars, and AI-powered explanations.
+**SmartMan CLI** is a modern, terminal-native enhancement for the Linux `man` command. It transforms dense, hard-to-read manual pages into an interactive, visually stunning experience with syntax highlighting, quick-navigation sidebars, and AI-powered explanations.
 
 ```text
  ____                        _   __  __
@@ -32,7 +32,7 @@
 ## 🚀 Installation
 
 ### The One-Liner (Recommended)
-Install SmartMan globally with a single command:
+Install SmartMan CLI globally with a single command:
 ```bash
 curl -sSL https://raw.githubusercontent.com/ambaskaryash/smartman-cli/main/install.sh | bash
 ```
@@ -52,7 +52,7 @@ brew install ambaskaryash/tap/smartman
 
 ## 🤖 AI Explanations (Powered by Groq)
 
-SmartMan uses the lightning-fast **Groq API** to provide instant, plain-English explanations of complex manual pages.
+SmartMan CLI uses the lightning-fast **Groq API** to provide instant, plain-English explanations of complex manual pages.
 
 1.  Get a free API key from [Groq Console](https://console.groq.com/).
 2.  Export it in your shell:

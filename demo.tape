@@ -26,18 +26,13 @@ Down 3
 Sleep 500ms
 Down 3
 Sleep 1s
+Type q
+Sleep 3s
 
 # Trigger Search
-Type "/"
-Sleep 1s
-Type "case"
-Sleep 500ms
+Type "smartman --explain awk"
 Enter
-Sleep 2s
-
-# Jump to OPTIONS
-Type "o"
-Sleep 2s
+Sleep 5s
 
 # Quit
 Type "q"
