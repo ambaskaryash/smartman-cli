@@ -44,7 +44,6 @@ pipx install .
 
 ### macOS/Linux (via Homebrew)
 ```bash
-# After you've hosted your formula
 brew install ambaskaryash/tap/smartman
 ```
 
